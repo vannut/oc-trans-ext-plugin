@@ -5,6 +5,12 @@ namespace Vannut\TransEXT;
 class Plugin extends \System\Classes\PluginBase
 {
 
+    public function boot()
+    {
+        $this->app['Illuminate\Contracts\Http\Kernel']
+         ->pushMiddleware('Vannut\TransEXT\Middleware\RewriteLocaleForIndexPage');
+    }
+
     /**
      * @var array Plugin dependencies
      */
@@ -23,7 +29,7 @@ class Plugin extends \System\Classes\PluginBase
     public function registerComponents()
     {
         return [
-            
+            'Vannut\TransEXT\Components\HeadAlternateHrefLangElements' => 'alternateHrefLangElements'
         ];
     }
 
