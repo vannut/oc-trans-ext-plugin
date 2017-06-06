@@ -13,6 +13,18 @@ What does it add:
 ## Middleware
 This middleware checks wether the root of a domain name is requested. Normal behaviour of the Rainlab.Translate is to show the localized homepage when requesting `domain.ext/`. The middleware checks the requested path. If its the root it sets the default locale and continues. Done.
 
+## rel="alternate" hreflang
+To server your potential clients the proper language-variant of your website, Google uses the rel="alternate" hreflang element to index your website. See [Google's help page](https://support.google.com/webmasters/answer/189077) for more information.
+You'll get a new component which you'll need to place inside your `<head>` section of your page, eg in your layout file or head-partial.
+The component will retrieve all the different (enabled) locale-specific URL's of the current page and
+list an element for each one of them. Eg:
+```
+<link rel="alternate" hreflang="nl" href="https://example.com/mijn-gave-pagina" />
+<link rel="alternate" hreflang="en" href="https://example.com/en/my-fancy-page" />
+```
+The component will automatically prefix the url with the locale by means of the twig function (described somewhere else in this documentation). The only thing you'll need to make sure is to specify an URL in the static page or CMS page.
+Ow didn't I mention that before, the component works both with CMS pages and Static Pages 😄
+
 ## Route to switch locale
 The Translate plugin gives you some means to switch to a different locale, but we needed a 'solid' url to switch to a different url.  
 The `/switch_locale/{locale}` route will test your given locale; if valid it assesses it to be needing a prefix or not. If not valid, it wil redirect to the default locale.
@@ -36,9 +48,4 @@ function onStart()
 ```
 
 ## TODO:
-* create a component to generate hreflang-elements:
-```
-<link rel="alternate" hreflang="nl" href="http://example.com/page.html" />
-<link rel="alternate" hreflang="en" href="http://example.com/en/page.html" />
-```
 * After switching locale by means of the route, look for the referer and redirect to the locale-spcific page (if available) instead of the root-page.
