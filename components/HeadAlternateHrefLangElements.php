@@ -21,19 +21,15 @@ class HeadAlternateHrefLangElements extends ComponentBase
 
     public function locales()
     {
-        // https://support.google.com/webmasters/answer/189077?hl=nl
-        //return $this->propertyName('name');
-
-        // beschikbare locales...
+        // Available locales
         $locales = collect(LocaleModel::listEnabled());
 
+        // Transform it to contain the new urls
         $locales->transform(function ($item, $key) {
             return $this->retrieveLocalizedUrl($key);
         });
 
         return $locales->toArray();
-
-
     }
 
     private function retrieveLocalizedUrl($locale)
