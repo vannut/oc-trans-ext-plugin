@@ -2,3 +2,4 @@
 1.0.2: Added middleware to check the root of the domain, and set the default locale accordingly.
 1.0.3: Added the AlternateHrefLang component
 1.0.4: Bug Capitalize Middleware is not working.
+1.0.5: added locale switcher
