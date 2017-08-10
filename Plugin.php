@@ -29,7 +29,8 @@ class Plugin extends \System\Classes\PluginBase
     public function registerComponents()
     {
         return [
-            'Vannut\TransEXT\Components\HeadAlternateHrefLangElements' => 'alternateHrefLangElements'
+            'Vannut\TransEXT\Components\HeadAlternateHrefLangElements' => 'alternateHrefLangElements',
+            'Vannut\TransEXT\Components\LocaleSwitcher' => 'localeSwitcher'
         ];
     }
 

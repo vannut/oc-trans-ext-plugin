@@ -3,7 +3,7 @@
 use RainLab\Translate\Classes\Translator;
 use RainLab\Translate\Models\Locale;
 
-Route::get('/switch_locale/{locale}', function ($locale) {
+Route::get('/switch_locale/{locale}/{uri?}', function ($locale, $uri = '/') {
 
     $locale = strtolower($locale);
     $trans = Translator::instance();
@@ -11,15 +11,25 @@ Route::get('/switch_locale/{locale}', function ($locale) {
 
     if (Locale::isValid($locale)) {
         $trans->setLocale($locale);
-        if ($locale !== $default) {
-            // redirecten naar /locale/'
-            return redirect()->to('/'.$locale);
-        }
+
     } else {
         $trans->setLocale($default);
     }
 
-    // redirecten naar '/';
-    return redirect()->to('/');
+    $uri = base64_decode($uri);
+
+
+
+    if (filter_var($uri, FILTER_VALIDATE_URL)) {
+        return redirect()->to($uri);
+    } else {
+        if ($locale !== $default) {
+            // redirecten naar /locale/'
+            return redirect()->to('/'.$locale);
+        } else {
+            return redirect()->to('/');
+        }
+    }
+
 
 });

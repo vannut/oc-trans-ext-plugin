@@ -1,0 +1,11 @@
+<select id="vannut_localeswitcher">
+    {% for loc, url in __SELF__.locales %}
+        <option
+            {% if loc == locale %}
+                selected="selected"
+            {% endif %}
+            data-url="{{ url(asses_menu_item_url(url, loc, defaultLocale)) }}">
+            {{ loc | upper }}
+        </option>
+    {% endfor %}
+</select>

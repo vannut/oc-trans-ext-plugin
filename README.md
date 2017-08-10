@@ -27,7 +27,9 @@ Ow didn't I mention that before, the component works both with CMS pages and Sta
 
 ## Route to switch locale
 The Translate plugin gives you some means to switch to a different locale, but we needed a 'solid' url to switch to a different url.  
-The `/switch_locale/{locale}` route will test your given locale; if valid it assesses it to be needing a prefix or not. If not valid, it wil redirect to the default locale.
+The `/switch_locale/{locale}/{$uri?}` route will test your given locale; if valid it assesses it to be needing a prefix or not. If not valid, it wil redirect to the default locale.
+You can provide a base64 encode url as a second parameter to which the user will be redirected.
+If not present the default `/` or `/locale/` will be used for resp. the default and alternate locales.
 
 ## Twig function
 The function takes the URL, active locale and the default locale as arguments. If the active locale === the defaultLocale it will strip the locale from the url. If not, the url will be prefixed with the locale.
@@ -46,6 +48,11 @@ function onStart()
     $this['defaultLocale'] = $trans->getDefaultLocale();
 }
 ```
+
+## Update: advanced localeswitcher
+This component can be placed on a page/layout/partial and displays a dropdown menu with theenabled locales. Switching locale will try to load the same page in the newly selected locale,
+and redirects to it.
+(Dont forget to use `{% scripts %}` in your layouts as the dropdown uses plain-javasscript to redirect)
 
 ## TODO:
 * After switching locale by means of the route, look for the referer and redirect to the locale-spcific page (if available) instead of the root-page.
