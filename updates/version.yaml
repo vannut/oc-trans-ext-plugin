@@ -3,3 +3,4 @@
 1.0.3: Added the AlternateHrefLang component
 1.0.4: Bug Capitalize Middleware is not working.
 1.0.5: added locale switcher
+1.0.6: Locale switcher: No dropdown is displayed when only one locale is present.
