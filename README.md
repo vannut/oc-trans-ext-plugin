@@ -1,3 +1,7 @@
+
+> This plugin is **abondonned**, as most of the functions are included in RainLab.Translate
+
+
 # Translate Extension
 
 The Rainlab.Translate plugin is awesome. Period.
